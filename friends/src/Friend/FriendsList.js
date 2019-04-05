@@ -1,31 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-export default class FriendsList extends Component {
-  state = {
-    friends: [],
-    error: ''
-  }
-
-  componentDidMount() {
-    axios
-    .get('http://localhost:5000/friends')
-    .then(res => {
-      console.log(res)
-      this.setState( () => ({ friends: res.data }))
-    })
-    .catch(err => {
-      this.setState( () => ({ error: err }))
-    })
-  }
-
-  render() {
-    return (
+const FriendsList = () => {
       <div className='friends-List'>
         {this.state.friends.map(friend => (
-          <div>{friend.name} </div>
+          <div>
+            <div>
+            {friend.name}
+            </div>
+            <div>
+            {friend.age}
+            </div>
+            <div>
+            {friend.email}
+            </div>
+          </div>
         ))}
+        <form onSubmit={props.addFriend}>
+          <input
+            type='text'
+            name='name'
+            value={props.newFriend.name}
+            onChange={props.handleChanges}
+            placeholder='name'
+          />
+          <input
+            type='text'
+            name='age'
+            placeholder='age'
+          />
+          <input
+            type='email'
+            name='email'
+            placeholder='email'
+          />
+          <button>
+            Add Friend
+          </button>
+        </form>
       </div>
-    )
   }
-}
+
+  export default FriendsList;

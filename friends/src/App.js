@@ -6,7 +6,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList />
+        <FriendsList
+        newFriend={this.state.newFriend}
+        handleChanges={this.handleChanges}
+        />
       </div>
     );
   }
