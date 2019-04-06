@@ -1,21 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 
-const FriendsList = () => {
-      <div className='friends-List'>
-        {this.state.friends.map(friend => (
-          <div>
-            <div>
-            {friend.name}
-            </div>
-            <div>
-            {friend.age}
-            </div>
-            <div>
-            {friend.email}
-            </div>
-          </div>
-        ))}
+
+const FriendForm = (props) => {
+    return (
         <form onSubmit={props.addFriend}>
           <input
             type='text'
@@ -25,20 +12,24 @@ const FriendsList = () => {
             placeholder='name'
           />
           <input
-            type='text'
+            type='number'
             name='age'
+            value={props.newFriend.age}
+            onChange={props.handleChanges}
             placeholder='age'
           />
           <input
             type='email'
             name='email'
+            value={props.newFriend.email}
+            onChange={props.handleChanges}
             placeholder='email'
           />
           <button>
             Add Friend
           </button>
         </form>
-      </div>
+    )
   }
 
-  export default FriendsList;
+  export default FriendForm;
